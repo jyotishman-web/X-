@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drive Link Converter</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      background: blue;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 15px;
+      color: green;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Google Drive Image Link Converter</h2>
+
+  <input id="inputLink" placeholder="Paste Google Drive link here">
+
+  <br>
+  <button onclick="convertLink()">Convert</button>
+
+  <div id="output"></div>
+
+  <script>
+    function convertLink() {
+      let link = document.getElementById("inputLink").value;
+
+      let match = link.match(/\/d\/(.*?)(\/|$)/);
+
+      if (match && match[1]) {
+        let fileId = match[1];
+        let directLink = "https://lh3.googleusercontent.com/d/" + fileId;
+
+        document.getElementById("output").innerHTML =
+          "Direct Link:<br>" + directLink;
+      } else {
+        document.getElementById("output").innerHTML =
+          "❌ Invalid Google Drive link";
+      }
+    }
+  </script>
+
+</body>
+</html>
